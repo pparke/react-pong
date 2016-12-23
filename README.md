@@ -1,6 +1,9 @@
 # react-pong
 A pong clone made for the purpose of learning how to use react to provide a UI for a HTML5 canvas game
 
+![Splash Screen](https://github.com/pparke/react-pong/raw/master/doc/pong_intro.png)
+![Splash Screen](https://github.com/pparke/react-pong/raw/master/doc/pong_gameplay.png)
+
 ## Purpose
 This is a proof of concept project for an idea I had about using React to provide the UI for HTML5 games.
 So far it's been very successful and allows me to use the DOM as a UI layer on top of a JavaScript backed
