@@ -1,6 +1,9 @@
 # react-pong
 A pong clone made for the purpose of learning how to use react to provide a UI for a HTML5 canvas game
 
+## [Play it here](https://pparke.github.io/react-pong/)
+
+
 <img src="https://github.com/pparke/react-pong/raw/master/docs/pong_intro.png" width="300" />
 <img src="https://github.com/pparke/react-pong/raw/master/docs/pong_gameplay.png" width="300" />
 
