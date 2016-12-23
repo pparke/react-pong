@@ -10,6 +10,8 @@ export default class Game extends EventEmitter {
     this.height = height;
     this.ctx = ctx;
 
+    this.loseCondition = 1000;
+
     this.ball = {
       x: 300,
       y: 300,
@@ -329,7 +331,7 @@ export default class Game extends EventEmitter {
     this.emit('point', player);
     player.score += 100;
     this.resetBall(ball);
-    if (this.ai.score > 100) {
+    if (this.ai.score > this.loseCondition) {
       this.emit('gameover');
     }
   }

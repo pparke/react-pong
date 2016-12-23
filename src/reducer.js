@@ -21,7 +21,6 @@ function setMessage(state, message) {
 }
 
 function setControls(state, controls) {
-  console.log('setting controls', controls)
   return state.set('controls', controls);
 }
 
