@@ -208,9 +208,11 @@ export default class Game extends EventEmitter {
     // limit paddle to screen bounds
     if (paddle.x < 0) {
       paddle.x = 0;
+      paddle.velocity.x = 0;
     }
     else if (paddle.x + paddle.width > this.width) {
       paddle.x = this.width - paddle.width;
+      paddle.velocity.x = 0;
     }
   }
 

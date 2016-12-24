@@ -28,7 +28,7 @@ visit [http://localhost:8080](http://localhost:8080)
 ## Todo
 - [ ] Improve collision and physics
   - [ ] Fix issue with ball getting stuck in paddles
-  - [ ] Prevent paddle from 'sticking' to wall
+  - [x] Prevent paddle from 'sticking' to wall
 - [ ] Improve CSS animations
 - [ ] Replace sprites
 - [x] Add sound
@@ -36,4 +36,5 @@ visit [http://localhost:8080](http://localhost:8080)
   - [ ] Intro sound
   - [ ] Game Over sound
 - [ ] Add high score list
+- [ ] Improve AI
 - [ ] Multiplayer
