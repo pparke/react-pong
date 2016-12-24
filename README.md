@@ -25,8 +25,15 @@ visit [http://localhost:8080](http://localhost:8080)
 ## Build
 ```yarn run build```
 
-## Notes
-There are still quite a few things that need to be fixed, the physics and collision detection are just
-good enough implementations and could use a lot of work.  CSS animations could be improved, better sprites
-could be added.  Sound could be added and it would be good to have a high scores list or even multiplayer
-using socket.io.
+## Todo
+- [ ] Improve collision and physics
+  - [ ] Fix issue with ball getting stuck in paddles
+  - [ ] Prevent paddle from 'sticking' to wall
+- [ ] Improve CSS animations
+- [ ] Replace sprites
+- [x] Add sound
+  - [x] Collision sounds
+  - [ ] Intro sound
+  - [ ] Game Over sound
+- [ ] Add high score list
+- [ ] Multiplayer

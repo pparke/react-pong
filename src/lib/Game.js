@@ -1,6 +1,7 @@
 import mousetrap from './mousetrap';
 import Atlas from './Atlas';
 import EventEmitter from 'events';
+import BeepBox from './BeepBox';
 
 export default class Game extends EventEmitter {
   constructor(props) {
@@ -99,6 +100,8 @@ export default class Game extends EventEmitter {
     this.time = 0;
     this.fps = 30;
     this.paused = true;
+
+    this.sound = new BeepBox();
 
     this.imagesLoaded = false;
     this.tileatlas = new Atlas();
@@ -321,10 +324,12 @@ export default class Game extends EventEmitter {
     if (Math.abs(ball.velocity.y) > ball.maxV) {
       ball.velocity.y = ball.maxV * Math.sign(ball.velocity.y);
     }
+    this.sound.playNote(200);
   }
 
   ballCollidedWithWall(ball, wall) {
     ball.velocity.x *= -1;
+    this.sound.playNote(300);
   }
 
   scorePoint(player, ball, goal) {
@@ -334,6 +339,7 @@ export default class Game extends EventEmitter {
     if (this.ai.score > this.loseCondition) {
       this.emit('gameover');
     }
+    this.sound.playNote(100);
   }
 
   elasticCollision (a, b) {
