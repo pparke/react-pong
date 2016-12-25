@@ -149,9 +149,9 @@ export default class Game extends EventEmitter {
     mousetrap.bind('right', () => { this.rightDown = false }, 'keyup');
     mousetrap.bind('p', this.togglePause.bind(this) );
     const canvas = this.ctx.canvas;
-    canvas.addEventListener('touchstart', this.touchStart, false);
-    canvas.addEventListener('touchmove', this.touchMove, false);
-    canvas.addEventListener('touchend', this.touchEnd, false);
+    canvas.addEventListener('touchstart', this.touchStart.bind(this), false);
+    canvas.addEventListener('touchmove', this.touchMove.bind(this), false);
+    canvas.addEventListener('touchend', this.touchEnd.bind(this), false);
   }
 
   touchStart(e) {
@@ -159,7 +159,7 @@ export default class Game extends EventEmitter {
     this.touch = e.changedTouches[0];
     // handle double tap
     if (!this.tapped) {
-      this.tapped = setTimeout(() => this.tapped = null);
+      this.tapped = setTimeout(() => this.tapped = null, 300);
     }
     else {
       clearTimeout(this.tapped);
