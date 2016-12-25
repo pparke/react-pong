@@ -95,7 +95,6 @@ export default class Game extends EventEmitter {
 
     this.leftDown = false;
     this.rightDown = false;
-    this.setupControls();
 
     this.time = 0;
     this.fps = 30;
@@ -118,6 +117,7 @@ export default class Game extends EventEmitter {
     this.on('reset', this.reset.bind(this));
     this.on('pause', this.togglePause.bind(this));
     this.on('blank', this.blank.bind(this));
+    this.once('ctx:set', this.setupControls.bind(this));
     this.once('ctx:set', this.checkReady.bind(this));
     this.once('loading:complete', this.checkReady.bind(this));
 
@@ -148,6 +148,48 @@ export default class Game extends EventEmitter {
     mousetrap.bind('right', () => { this.rightDown = true; this.leftDown = false; }, 'keydown');
     mousetrap.bind('right', () => { this.rightDown = false }, 'keyup');
     mousetrap.bind('p', this.togglePause.bind(this) );
+    const canvas = this.ctx.canvas;
+    canvas.addEventListener('touchstart', this.touchStart, false);
+    canvas.addEventListener('touchmove', this.touchMove, false);
+    canvas.addEventListener('touchend', this.touchEnd, false);
+  }
+
+  touchStart(e) {
+    e.preventDefault();
+    this.touch = e.changedTouches[0];
+    // handle double tap
+    if (!this.tapped) {
+      this.tapped = setTimeout(() => this.tapped = null);
+    }
+    else {
+      clearTimeout(this.tapped);
+      this.tapped = null;
+      // double tap detected
+      this.togglePause();
+    }
+  }
+
+  touchMove(e) {
+    e.preventDefault();
+    const touch = e.changedTouches[0];
+    // moved to the right
+    if (touch.screenX > this.touch.screenX) {
+      this.rightDown = true;
+      this.leftDown = false;
+    }
+    else if (touch.screenX < this.touch.screenX) {
+      this.leftDown = true;
+      this.rightDown = false;
+    }
+    else {
+      this.rightDown = false;
+      this.leftDown = false;
+    }
+  }
+
+  touchEnd(e) {
+    this.rightDown = false;
+    this.leftDown = false;
   }
 
   loadImages() {
@@ -162,6 +204,7 @@ export default class Game extends EventEmitter {
   }
 
   togglePause() {
+    this.sound.playNote(440);
     this.paused = !this.paused;
     if (this.paused) {
       this.emit('paused');

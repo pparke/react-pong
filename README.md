@@ -37,4 +37,5 @@ visit [http://localhost:8080](http://localhost:8080)
   - [ ] Game Over sound
 - [ ] Add high score list
 - [ ] Improve AI
-- [ ] Multiplayer
+- [ ] Add mobile support
+  - [ ] Touchevents
